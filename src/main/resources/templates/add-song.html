@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add or edit Song</title>
+</head>
+<body>
+<!--th:value="${songToEdit.getId()}"-->
+<!--th:value="${songToEdit.getTitle()}"-->
+<!--th:value="${songToEdit.getGenre()}"-->
+<!--th:value="${songToEdit.getReleaseYear()}"-->
+<!--th:value="${songToEdit.getAlbum().getName()}"-->
+    <h2>Add or edit Song</h2>
+    <form action="/songs/add" method="post">
+        <input type="hidden" name="songId">
+        <div>
+            <label for="trackId">Title</label>
+            <input type="text" name="trackId" id="trackId"
+                   th:value="${(songToEdit != null) ? songToEdit.getTrackId() : ''}">
+            <br/>
+        </div>
+        <div>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title"
+                   th:value="${(songToEdit != null) ? songToEdit.getTitle() : ''}">
+            <br/>
+        </div>
+        <div>
+            <label for="genre">Genre</label>
+            <input type="text" name="genre" id="genre"
+                   th:value="${(songToEdit != null) ? songToEdit.getGenre() : ''}">
+            <br/>
+        </div>
+        <div>
+            <label for="releaseYear">Release Year</label>
+            <input type="text" name="releaseYear" id="releaseYear"
+                   th:value="${(songToEdit != null) ? songToEdit.getReleaseYear() : ''}">
+            <br/>
+        </div>
+        <div>
+            <label for="album">Album</label>
+            <select id="album" name="albumId">
+                <option th:value="${songToEdit.getAlbum().getId()}" th:text="${songToEdit.getAlbum().getName()}"></option>
+                <option th:each="album : ${albums}"
+                        th:value="${album.getId()}"
+                        th:text="${album.getName()}">
+                </option>
+            </select>
+            <br/>
+        </div>
+        <button>Save</button>
+    </form>
+</body>
+</html>
