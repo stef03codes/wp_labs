@@ -53,13 +53,22 @@ public class SongRepository {
 
     // CRUD
     public void save(Song song) {
+        if(songs.stream().anyMatch(s -> Objects.equals(s.getTitle(), song.getTitle()))) {
+            Song delete = songs.stream().filter(s -> Objects.equals(s.getTitle(), song.getTitle())).findFirst().orElse(null);
+            songs.remove(delete);
+        }
         songs.add(song);
     }
+
     public Song findById(Long id) {
         return songs
                 .stream()
                 .filter(song -> Objects.equals(song.getId(), id))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public void delete(Song song) {
+        songs.remove(song);
     }
 }

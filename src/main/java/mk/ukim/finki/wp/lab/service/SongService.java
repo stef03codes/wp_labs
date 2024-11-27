@@ -12,4 +12,5 @@ public interface SongService {
     List<Song> search(String text);
     void addSong(String title, String trackId, String genre, Integer releaseYear, Long albumId);
     Song findSongById(Long id);
+    void deleteSong(Long songId);
 }

@@ -55,4 +55,10 @@ public class SongController {
 
         return "add-song";
     }
+
+    @DeleteMapping("/songs/delete/{id}")
+    public String deleteSong(@PathVariable Long id) {
+        songService.deleteSong(id);
+        return "redirect:/listSongs";
+    }
 }

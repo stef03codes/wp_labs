@@ -14,7 +14,7 @@
     <form action="/songs/add" method="post">
         <input type="hidden" name="songId">
         <div>
-            <label for="trackId">Title</label>
+            <label for="trackId">TrackId</label>
             <input type="text" name="trackId" id="trackId"
                    th:value="${(songToEdit != null) ? songToEdit.getTrackId() : ''}">
             <br/>
@@ -43,7 +43,8 @@
                 <option th:value="${songToEdit.getAlbum().getId()}" th:text="${songToEdit.getAlbum().getName()}"></option>
                 <option th:each="album : ${albums}"
                         th:value="${album.getId()}"
-                        th:text="${album.getName()}">
+                        th:text="${album.getName()}"
+                        >
                 </option>
             </select>
             <br/>
