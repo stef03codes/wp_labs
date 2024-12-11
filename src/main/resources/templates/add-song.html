@@ -5,11 +5,6 @@
     <title>Add or edit Song</title>
 </head>
 <body>
-<!--th:value="${songToEdit.getId()}"-->
-<!--th:value="${songToEdit.getTitle()}"-->
-<!--th:value="${songToEdit.getGenre()}"-->
-<!--th:value="${songToEdit.getReleaseYear()}"-->
-<!--th:value="${songToEdit.getAlbum().getName()}"-->
     <h2>Add or edit Song</h2>
     <form action="/songs/add" method="post">
         <input type="hidden" name="songId">
@@ -40,7 +35,9 @@
         <div>
             <label for="album">Album</label>
             <select id="album" name="albumId">
-                <option th:value="${songToEdit.getAlbum().getId()}" th:text="${songToEdit.getAlbum().getName()}"></option>
+                <th:block th:if="${songToEdit != null}">
+                    <option th:value="${songToEdit.getAlbum().getId()}" th:text="${songToEdit.getAlbum().getName()}"></option>
+                </th:block>
                 <option th:each="album : ${albums}"
                         th:value="${album.getId()}"
                         th:text="${album.getName()}"

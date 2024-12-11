@@ -19,4 +19,9 @@ public class AlbumServiceImpl implements AlbumService {
     public List<Album> findAll() {
         return albumRepository.findAll();
     }
+
+    @Override
+    public Album findById(Long id) {
+        return albumRepository.findById(id).orElse(null);
+    }
 }

@@ -6,4 +6,5 @@ import java.util.*;
 
 public interface AlbumService {
     List<Album> findAll();
+    Album findById(Long id);
 }

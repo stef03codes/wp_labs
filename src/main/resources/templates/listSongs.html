@@ -15,19 +15,21 @@
         </header>
         <main>
             <h2>Search Song:</h2>
-            <form action="/listSongs" method="post">
-                <input type="text" name="text">
+            <form action="/songs" method="GET">
+                <input type="text" name="search">
                 <input type="submit" value="Search">
             </form>
             <h2>Choose a song:</h2>
             <form action="/artist" method="get">
                 <label th:each="song : ${songs}">
-                    <input type="radio" name="trackId" th:value="${song.getTrackId()}">
+                    <input type="radio" name="songId" th:value="${song.getId()}">
                     <span th:text="${song}"></span>
-                    <a th:href="@{'/songs/edit/{id}' (id=${song.getId()})}">
-                        Edit
-                    </a>
-                    <a href="#">Delete</a>
+                    <button type="button">
+                        <a th:href="@{'/songs/edit/{id}' (id=${song.getId()})}">Edit</a>
+                    </button>
+                    <button type="button">
+                        <a th:href="@{'/songs/delete/{id}' (id=${song.getId()})}">Delete</a>
+                    </button>
                     <br/>
                 </label>
                 <br/>

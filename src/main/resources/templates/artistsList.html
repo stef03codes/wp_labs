@@ -29,12 +29,13 @@
 <body>
     <header>
         <h1>Select the Artist to add to the List of Performers </h1>
+<!--        <h1 th:text="${error}"></h1>-->
     </header>
     <section>
         <h2>Select artist:</h2>
         <!-- Make changes to this code to dynamically display radio buttons for each artist as in the example -->
-        <form action="/songDetails" method="post">
-            <input type="hidden" name="trackId" th:value="${song.getTrackId()}">
+        <form action="/songDetails" method="POST">
+            <input type="hidden" name="id" th:value="${song.getId()}">
             <label th:each="artist : ${artists}">
                 <input type="radio" name="artistId" th:value="${artist.getId()}">
                 <span th:text="${artist}"></span>

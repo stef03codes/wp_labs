@@ -21,7 +21,7 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public Artist ArtistfindById(Long id) {
+    public Artist findById(Long id) {
         return artistRepository.findById(id).orElse(null);
     }
 }

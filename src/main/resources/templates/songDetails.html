@@ -6,7 +6,8 @@
 <body>
 
 <header>
-   <h1 th:text="${song.getTitle()}">Song title</h1>
+    <h1 th:text="${song.getTitle()}">Song title</h1>
+    <h3 th:text="${song.getRating()}"></h3>
 </header>
 <section>
     <h2 th:text="${song.getGenre()}">Genre</h2>
@@ -15,6 +16,12 @@
     <ul th:each="artist : ${song.getPerformers()}">
         <li th:text="${artist}">Jon Bon Jovi</li>
     </ul>
+    <form action="/songDetails/ratesong" method="post">
+        <label for="rating">Rate the Song</label>
+        <input type="hidden" name="id" th:value="${song.getId()}">
+        <input type="text" name="rating" id="rating">
+        <input type="submit" value="Add rating">
+    </form>
 </section>
 
 </body>
