@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="utf-8">
         <title>Songs Homepage - Welcome to My Music Store</title>
@@ -24,21 +24,25 @@
                 <label th:each="song : ${songs}">
                     <input type="radio" name="songId" th:value="${song.getId()}">
                     <span th:text="${song}"></span>
-                    <button type="button">
-                        <a th:href="@{'/songs/edit/{id}' (id=${song.getId()})}">Edit</a>
-                    </button>
-                    <button type="button">
-                        <a th:href="@{'/songs/delete/{id}' (id=${song.getId()})}">Delete</a>
-                    </button>
+                    <th:block sec:authorize="hasRole('ADMIN')">
+                        <button type="button">
+                            <a th:href="@{'/songs/edit/{id}' (id=${song.getId()})}">Edit</a>
+                        </button>
+                        <button type="button">
+                            <a th:href="@{'/songs/delete/{id}' (id=${song.getId()})}">Delete</a>
+                        </button>
+                    </th:block>
                     <br/>
                 </label>
                 <br/>
                 <input type='submit' value='Submit'>
             </form>
-            <h2>Add New Song:</h2>
-            <a href="/songs/add">
-                <button>Add new song</button>
-            </a>
+            <th:block sec:authorize="hasRole('ADMIN')">
+                <h2>Add New Song:</h2>
+                <a href="/songs/add">
+                    <button>Add new song</button>
+                </a>
+            </th:block>
         </main>
     </body>
 </html>
